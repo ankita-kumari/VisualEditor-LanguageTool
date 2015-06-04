@@ -33,13 +33,13 @@ $wgExtensionMessagesFiles['LanguageToolAlias'] = __DIR__ . '/LanguageTool.i18n.a
 #$wgHooks['NameOfHook'][] = 'LanguageToolHooks::onNameOfHook';
 
 // Register special pages
-$wgSpecialPages['HelloWorld'] = 'SpecialHelloWorld';
+//$wgSpecialPages['HelloWorld'] = 'SpecialHelloWorld';
 
 // Register modules
 $wgResourceModules['ext.languageTool.foo'] = array(
 	'scripts' => array(
 		'modules/ext.languageTool.js',
-		'modules/ext.languageTool.foo.js',
+//		'modules/ext.languageTool.foo.js',
 	),
 	'styles' => array(
 		'modules/ext.languageTool.foo.css',
@@ -57,4 +57,5 @@ $wgResourceModules['ext.languageTool.foo'] = array(
 /* Configuration */
 
 // Enable Foo
-#$wgLanguageToolEnableFoo = true;
+$wgLanguageToolEnableFoo = true;
+$wgVisualEditorPluginModules[] = 'ext.languageTool.foo';
