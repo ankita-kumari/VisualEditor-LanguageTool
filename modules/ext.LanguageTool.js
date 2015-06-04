@@ -16,5 +16,5 @@
 	//ve.ui.MWLanguageTool.static.commandName = 'media';
 	//ve.ui.MWLanguageTool.static.autoAddToCatchall = false;
 	//ve.ui.MWLanguageTool.static.autoAddToGroup = false;
-	ve.ui.toolFactory.register( ve.ui.MWLanguageTool );
+	ve.ui.toolFactory.register( mw.languageTool );
 }() );
