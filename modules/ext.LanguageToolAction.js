@@ -38,7 +38,7 @@ mw.languageToolAction.static.methods = [ 'extract', 'send' ];
 /* Methods */
 
 /**
- * Step backwards in time.
+ * Extract text from all text nodes
  *
  * @method
  * @return {boolean} Action was executed
@@ -64,7 +64,7 @@ mw.languageToolAction.prototype.extract = function () {
 	}
 
 /**
- * Step forwards in time.
+ * Send text to LanguageTool server
  *
  * @method
  * @return {boolean} Action was executed
