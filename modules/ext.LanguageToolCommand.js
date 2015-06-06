@@ -41,7 +41,7 @@ mw.languageToolCommand.prototype.isExecutable = function ( fragment ) {
 
 	// Parent method
 	return mw.languageToolCommand.super.prototype.isExecutable.apply( this, arguments ) 
-	//&& surface[this.check].call( surface );
+		// && surface[this.check].call( surface );
 };
 
 /* Registration */

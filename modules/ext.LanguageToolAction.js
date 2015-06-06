@@ -25,7 +25,7 @@ OO.inheritClass( mw.languageToolAction, ve.ui.Action );
 
 /* Static Properties */
 
-mw.languageToolAction.static.name = 'LanguageTool';
+mw.languageToolAction.static.name = 'languageTool';
 
 /**
  * List of allowed methods for the action.
@@ -70,7 +70,8 @@ mw.languageToolAction.prototype.extract = function () {
  * @return {boolean} Action was executed
  */
 mw.languageToolAction.prototype.send = function () {
-		var textNodes = extractText();
+		var textNodes = this.extract();
+		var model = ve.init.target.getSurface().getModel();
 		for (var nodeI = 0; nodeI < textNodes.length; nodeI++) {
 			var node = textNodes[nodeI];
 			var nodeRange = node.getRange();
