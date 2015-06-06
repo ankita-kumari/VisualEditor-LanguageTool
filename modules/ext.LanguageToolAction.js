@@ -69,17 +69,78 @@ mw.languageToolAction.prototype.extract = function () {
  * @method
  * @return {boolean} Action was executed
  */
-mw.languageToolAction.prototype.send = function () {
+mw.languageToolAction.prototype.extractParams = function () {
 		var textNodes = this.extract();
 		var model = ve.init.target.getSurface().getModel();
+		var text = "";
 		for (var nodeI = 0; nodeI < textNodes.length; nodeI++) {
 			var node = textNodes[nodeI];
 			var nodeRange = node.getRange();
 			var nodeText = model.getLinearFragment(nodeRange).getText();
-			console.log(nodeText);
+			text = text + ". " + nodeText;
+			//console.log(nodeText);
 		}
-		return true;
+		console.log(text);
+		var lang = mw.config.get( 'wgPageContentLanguage' );
+		console.log(lang);
+		var params = "language=" + lang + "&text=" + text;
+		console.log(params);
+		return params;
 	}
+
+/*xhr request part*/
+// Create the XHR object.
+mw.languageToolAction.prototype.createCORSRequest = function (method, url) {
+	var xhr = new XMLHttpRequest();
+	if ("withCredentials" in xhr) {
+    	// XHR for Chrome/Firefox/Opera/Safari.
+    	xhr.open(method, url, true);
+  	} else if (typeof XDomainRequest != "undefined") {
+    	// XDomainRequest for IE.
+    	xhr = new XDomainRequest();
+    	xhr.open(method, url);
+  	} else {
+    	// CORS not supported.
+    	xhr = null;
+  	}
+  	return xhr;
+}
+
+/*
+// Helper method to parse the title tag from the response.
+function getTitle(text) {
+  return text.match('<title>(.*)?</title>')[1];
+}
+*/
+
+// Make the actual CORS request.
+mw.languageToolAction.prototype.send = function () {
+	var url = "http://tools.wmflabs.org/languageproofing/";
+	var xhr = this.createCORSRequest('POST', url);
+	xhr.setRequestHeader('Content-Type', 'text/xml');
+	xhr.setRequestHeader('charset', 'utf-8');
+	xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+	if (!xhr) {
+    	alert('CORS not supported');
+    	return;
+  	}
+
+  	// Response handlers.
+  	
+  	xhr.onload = function() {
+	    var text = xhr.responseXML;
+	    console.log(text);
+    	//var title = getTitle(text);
+    	//alert('Response from CORS request to ' + url + ': ' + title);
+  	};
+	
+  	xhr.onerror = function() {
+    	alert('Woops, there was an error making the request.');
+  	};
+
+  	xhr.send( this.extractParams() );
+  	return;
+}
 
 /* Registration */
 
