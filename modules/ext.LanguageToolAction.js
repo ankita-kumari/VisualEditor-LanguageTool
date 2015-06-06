@@ -69,7 +69,7 @@ mw.languageToolAction.prototype.extract = function () {
  * @method
  * @return {boolean} Action was executed
  */
-mw.languageToolAction.prototype.extractParams = function () {
+mw.languageToolAction.prototype.send = function () {
 		var textNodes = this.extract();
 		var model = ve.init.target.getSurface().getModel();
 		var text = "";
@@ -77,14 +77,15 @@ mw.languageToolAction.prototype.extractParams = function () {
 			var node = textNodes[nodeI];
 			var nodeRange = node.getRange();
 			var nodeText = model.getLinearFragment(nodeRange).getText();
-			text = text + ". " + nodeText;
+			text += nodeText;
 			//console.log(nodeText);
 		}
-		console.log(text);
+		//console.log(text);
 		var lang = mw.config.get( 'wgPageContentLanguage' );
-		console.log(lang);
+		//console.log(lang);
 		var params = "language=" + lang + "&text=" + text;
-		console.log(params);
+		//console.log(params);
+		$.ajax('https://tools.wmflabs.org/languageproofing', {data: {language: lang,  text: text}}).done(function(d){console.log(window.d=d)})
 		return params;
 	}
 
@@ -98,7 +99,7 @@ mw.languageToolAction.prototype.createCORSRequest = function (method, url) {
   	} else if (typeof XDomainRequest != "undefined") {
     	// XDomainRequest for IE.
     	xhr = new XDomainRequest();
-    	xhr.open(method, url);
+    	xhr.open(method, url, true);
   	} else {
     	// CORS not supported.
     	xhr = null;
@@ -114,12 +115,12 @@ function getTitle(text) {
 */
 
 // Make the actual CORS request.
-mw.languageToolAction.prototype.send = function () {
-	var url = "http://tools.wmflabs.org/languageproofing/";
+mw.languageToolAction.prototype.sendWrong = function () {
+	/*var url = "http://tools.wmflabs.org/languageproofing/";
 	var xhr = this.createCORSRequest('POST', url);
 	xhr.setRequestHeader('Content-Type', 'text/xml');
-	xhr.setRequestHeader('charset', 'utf-8');
-	xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+	xhr.setRequestHeader('charset', 'UTF-8');
+	//xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
 	if (!xhr) {
     	alert('CORS not supported');
     	return;
@@ -137,8 +138,12 @@ mw.languageToolAction.prototype.send = function () {
   	xhr.onerror = function() {
     	alert('Woops, there was an error making the request.');
   	};
-
+  	console.log( this.extractParams() );
   	xhr.send( this.extractParams() );
+  	*/
+  	var lang = mw.config.get( 'wgPageContentLanguage' );
+
+  	$.ajax('https://tools.wmflabs.org/languageproofing', {data: {language:'en',  text: 'a simple test'}}).done(function(d){console.log(window.d=d)})
   	return;
 }
 
