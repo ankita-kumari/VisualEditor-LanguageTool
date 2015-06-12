@@ -39,7 +39,8 @@ $wgExtensionMessagesFiles['LanguageToolAlias'] = __DIR__ . '/LanguageTool.i18n.a
 $wgResourceModules['ext.languageTool.foo'] = array(
 	'scripts' => array(
 		'modules/ext.languageTool.js',
-//		'modules/ext.languageTool.foo.js',
+		'modules/ext.languageToolAction.js',
+		'modules/ext.languageToolCommand.js',
 	),
 	'styles' => array(
 		'modules/ext.languageTool.foo.css',

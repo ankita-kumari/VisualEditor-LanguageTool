@@ -8,7 +8,7 @@
 			ve.ui.DialogTool.call( this, toolGroup, config );
 		};
 	OO.inheritClass( mw.languageTool, ve.ui.DialogTool );
-	mw.languageTool.static.name = 'Language';
+	mw.languageTool.static.name = 'LanguageTool';
 	mw.languageTool.static.group = 'object';
 	mw.languageTool.static.icon = 'picture';
 	mw.languageTool.static.title = 'LanguageTool';
