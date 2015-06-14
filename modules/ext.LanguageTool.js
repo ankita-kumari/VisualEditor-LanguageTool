@@ -12,8 +12,8 @@
 	mw.languageTool.static.group = 'dialog';
 	mw.languageTool.static.icon = 'picture';
 	mw.languageTool.static.title = 'LanguageTool';
-	mw.languageTool.static.commandName = 'send';
-	mw.languageTool.static.activeWindow = 'LanguageTool';
+	mw.languageTool.static.commandName = 'languageTool';
+	mw.languageTool.static.activeWindow = 'languageTool';
 	//mw.languageTool.static.modelClasses = [ ve.dm.MWBlockImageNode, ve.dm.MWInlineImageNode ];
 	//mw.languageTool.static.commandName = 'media';
 	//mw.languageTool.static.autoAddToCatchall = false;

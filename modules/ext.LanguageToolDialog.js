@@ -31,9 +31,9 @@ ve.ui.LanguageToolDialog = function VeUiLanguageToolDialog( config ) {
 
 OO.inheritClass( ve.ui.LanguageToolDialog, ve.ui.ToolbarDialog );
 
-ve.ui.LanguageToolDialog.static.name = 'LanguageTool';
+ve.ui.LanguageToolDialog.static.name = 'languageTool';
 
-ve.ui.LanguageToolDialog.static.title = 'LanguageTool';
+ve.ui.LanguageToolDialog.static.title = 'languageTool';
 //OO.ui.deferMsg( 'visualeditor-find-and-replace-title' );
 
 /**
