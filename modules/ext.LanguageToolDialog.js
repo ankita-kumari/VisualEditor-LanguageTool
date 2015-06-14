@@ -1,4 +1,4 @@
-( function () {
+	( function () {
 /*!
  * VisualEditor UserInterface LanguageToolDialog class.
  *
@@ -20,7 +20,7 @@ ve.ui.LanguageToolDialog = function VeUiLanguageToolDialog( config ) {
 
 	// Properties
 	this.surface = null;
-	this.invalidRegex = false;
+	//this.invalidRegex = false;
 
 	// Pre-initialization
 	this.$element.addClass( 've-ui-LanguageToolDialog' );
@@ -65,64 +65,74 @@ ve.ui.LanguageToolDialog.prototype.initialize = function () {
 		$: this.$,
 		placeholder: ve.msg( 'visualeditor-find-and-replace-find-text' )
 	} );
+	/*
 	this.matchCaseToggle = new OO.ui.ToggleButtonWidget( {
 		$: this.$,
 		icon: 'case-sensitive',
 		iconTitle: ve.msg( 'visualeditor-find-and-replace-match-case' )
 	} );
-	this.regexToggle = new OO.ui.ToggleButtonWidget( {
+	*/
+	/*this.regexToggle = new OO.ui.ToggleButtonWidget( {
 		$: this.$,
 		icon: 'regular-expression',
 		iconTitle: ve.msg( 'visualeditor-find-and-replace-regular-expression' )
-	} );
+	} );*/
 
+	/*
 	this.previousButton = new OO.ui.ButtonWidget( {
 		$: this.$,
 		icon: 'previous',
 		iconTitle: ve.msg( 'visualeditor-find-and-replace-previous-button' ) + ' ' +
 			ve.ui.triggerRegistry.getMessages( 'findPrevious' ).join( ', ' )
 	} );
+	*/
+	/*
 	this.nextButton = new OO.ui.ButtonWidget( {
 		$: this.$,
 		icon: 'next',
 		iconTitle: ve.msg( 'visualeditor-find-and-replace-next-button' ) + ' ' +
 			ve.ui.triggerRegistry.getMessages( 'findNext' ).join( ', ' )
-	} );
+	} );*/
+
 	this.replaceText = new OO.ui.TextInputWidget( {
 		$: this.$,
 		placeholder: ve.msg( 'visualeditor-find-and-replace-replace-text' )
 	} );
+	/*
 	this.replaceButton = new OO.ui.ButtonWidget( {
 		$: this.$,
 		label: ve.msg( 'visualeditor-find-and-replace-replace-button' )
 	} );
+	*/
+	/*
 	this.replaceAllButton = new OO.ui.ButtonWidget( {
 		$: this.$,
 		label: ve.msg( 'visualeditor-find-and-replace-replace-all-button' )
 	} );
-
+	*/
 	var optionsGroup = new OO.ui.ButtonGroupWidget( {
 			$: this.$,
 			classes: ['ve-ui-LanguageToolDialog-cell'],
 			items: [
-				this.matchCaseToggle,
-				this.regexToggle
+				//this.matchCaseToggle,
+				//this.regexToggle
 			]
 		} ),
 		navigateGroup = new OO.ui.ButtonGroupWidget( {
 			$: this.$,
 			classes: ['ve-ui-LanguageToolDialog-cell'],
 			items: [
-				this.previousButton,
-				this.nextButton
+				//this.previousButton,
+				//this.nextButton
 			]
 		} ),
+		
 		replaceGroup = new OO.ui.ButtonGroupWidget( {
 			$: this.$,
 			classes: ['ve-ui-LanguageToolDialog-cell'],
 			items: [
-				this.replaceButton,
-				this.replaceAllButton
+				//this.replaceButton,
+				//this.replaceAllButton
 			]
 		} ),
 		doneButton = new OO.ui.ButtonWidget( {
@@ -141,12 +151,12 @@ ve.ui.LanguageToolDialog.prototype.initialize = function () {
 		change: 'onFindChange',
 		enter: 'onFindTextEnter'
 	} );
-	this.matchCaseToggle.connect( this, { change: 'onFindChange' } );
-	this.regexToggle.connect( this, { change: 'onFindChange' } );
-	this.nextButton.connect( this, { click: 'findNext' } );
-	this.previousButton.connect( this, { click: 'findPrevious' } );
-	this.replaceButton.connect( this, { click: 'onReplaceButtonClick' } );
-	this.replaceAllButton.connect( this, { click: 'onReplaceAllButtonClick' } );
+	//this.matchCaseToggle.connect( this, { change: 'onFindChange' } );
+	//this.regexToggle.connect( this, { change: 'onFindChange' } );
+	//this.nextButton.connect( this, { click: 'findNext' } );
+	//this.previousButton.connect( this, { click: 'findPrevious' } );
+	//this.replaceButton.connect( this, { click: 'onReplaceButtonClick' } );
+	//this.replaceAllButton.connect( this, { click: 'onReplaceAllButtonClick' } );
 	doneButton.connect( this, { click: 'close' } );
 
 	// Initialization
@@ -255,9 +265,9 @@ ve.ui.LanguageToolDialog.prototype.onFindTextEnter = function ( e ) {
 		return;
 	}
 	if ( e.shiftKey ) {
-		this.findPrevious();
+		//this.findPrevious();
 	} else {
-		this.findNext();
+		//this.findNext();
 	}
 };
 
@@ -269,36 +279,36 @@ ve.ui.LanguageToolDialog.prototype.updateFragments = function () {
 		surfaceModel = this.surface.getModel(),
 		documentModel = surfaceModel.getDocument(),
 		ranges = [],
-		matchCase = this.matchCaseToggle.getValue(),
-		isRegex = this.regexToggle.getValue(),
+		//matchCase = this.matchCaseToggle.getValue(),
+		//isRegex = this.regexToggle.getValue(),
 		find = this.findText.getValue();
 
-	this.invalidRegex = false;
-
+	//this.invalidRegex = false;
+	/*
 	if ( isRegex && find ) {
 		try {
 			this.query = new RegExp( find );
 		} catch ( e ) {
 			this.invalidRegex = true;
 		}
-	} else {
+	} else {*/
 		this.query = find;
-	}
-	this.findText.$element.toggleClass( 've-ui-LanguageToolDialog-findText-error', this.invalidRegex );
+	//}
+	//this.findText.$element.toggleClass( 've-ui-LanguageToolDialog-findText-error', this.invalidRegex );
 
 	this.fragments = [];
 	if ( this.query ) {
-		ranges = documentModel.findText( this.query, matchCase, true );
+		ranges = documentModel.findText( this.query, /*matchCase,*/ true );
 		for ( i = 0, l = ranges.length; i < l; i++ ) {
 			this.fragments.push( surfaceModel.getLinearFragment( ranges[i], true, true ) );
 		}
 	}
 	this.results = this.fragments.length;
 	this.focusedIndex = Math.min( this.focusedIndex, this.results ? this.results - 1 : 0 );
-	this.nextButton.setDisabled( !this.results );
-	this.previousButton.setDisabled( !this.results );
-	this.replaceButton.setDisabled( !this.results );
-	this.replaceAllButton.setDisabled( !this.results );
+	//this.nextButton.setDisabled( !this.results );
+	//this.previousButton.setDisabled( !this.results );
+	//this.replaceButton.setDisabled( !this.results );
+	//this.replaceAllButton.setDisabled( !this.results );
 };
 
 /**
@@ -381,7 +391,7 @@ ve.ui.LanguageToolDialog.prototype.highlightFocused = function ( scrollIntoView 
 		);
 	} else {
 		this.findText.setLabel(
-			this.invalidRegex ? ve.msg( 'visualeditor-find-and-replace-invalid-regex' ) : ''
+			//this.invalidRegex ? ve.msg( 'visualeditor-find-and-replace-invalid-regex' ) : ''
 		);
 		return;
 	}
@@ -417,22 +427,26 @@ ve.ui.LanguageToolDialog.prototype.highlightFocused = function ( scrollIntoView 
 /**
  * Find the next result
  */
+ /*
 ve.ui.LanguageToolDialog.prototype.findNext = function () {
 	this.focusedIndex = ( this.focusedIndex + 1 ) % this.results;
 	this.highlightFocused( true );
-};
+};*/
 
 /**
  * Find the previous result
  */
+ /*
 ve.ui.LanguageToolDialog.prototype.findPrevious = function () {
 	this.focusedIndex = ( this.focusedIndex + this.results - 1 ) % this.results;
 	this.highlightFocused( true );
 };
+*/
 
 /**
  * Handle click events on the replace button
  */
+ /*
 ve.ui.LanguageToolDialog.prototype.onReplaceButtonClick = function () {
 	var end;
 
@@ -458,10 +472,12 @@ ve.ui.LanguageToolDialog.prototype.onReplaceButtonClick = function () {
 	// We may have iterated off the end
 	this.focusedIndex = this.focusedIndex % this.results;
 };
+*/
 
 /**
  * Handle click events on the previous all button
  */
+ /*
 ve.ui.LanguageToolDialog.prototype.onReplaceAllButtonClick = function () {
 	var i, l;
 
@@ -469,32 +485,33 @@ ve.ui.LanguageToolDialog.prototype.onReplaceAllButtonClick = function () {
 		this.replace( i );
 	}
 };
-
+*/
 /**
  * Replace the result at a specified index
  *
  * @param {number} index Index to replace
  */
+ /*
 ve.ui.LanguageToolDialog.prototype.replace = function ( index ) {
 	var replace = this.replaceText.getValue();
 
-	if ( this.query instanceof RegExp ) {
+	/*if ( this.query instanceof RegExp ) {
 		this.fragments[index].insertContent(
 			this.fragments[index].getText().replace( this.query, replace ),
 			true
 		);
 	} else {
 		this.fragments[index].insertContent( replace, true );
-	}
-};
+	//}
+};*/
 
 /**
  * @inheritdoc
  */
 ve.ui.LanguageToolDialog.prototype.getActionProcess = function ( action ) {
-	if ( action === 'findNext' || action === 'findPrevious' ) {
+	/*if ( action === 'findNext' || action === 'findPrevious' ) {
 		return new OO.ui.Process( this[action], this );
-	}
+	}*/
 	return ve.ui.LanguageToolDialog.super.prototype.getActionProcess.call( this, action );
 };
 
