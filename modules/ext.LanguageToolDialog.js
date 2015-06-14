@@ -61,10 +61,11 @@ ve.ui.LanguageToolDialog.prototype.initialize = function () {
 	this.replacing = false;
 	this.focusedIndex = 0;
 	this.query = null;
+	/*
 	this.findText = new OO.ui.TextInputWidget( {
 		$: this.$,
 		placeholder: ve.msg( 'visualeditor-find-and-replace-find-text' )
-	} );
+	} );*/
 	/*
 	this.matchCaseToggle = new OO.ui.ToggleButtonWidget( {
 		$: this.$,
@@ -145,12 +146,13 @@ ve.ui.LanguageToolDialog.prototype.initialize = function () {
 
 	// Events
 	this.onWindowScrollDebounced = ve.debounce( this.onWindowScroll.bind( this ), 250 );
-	this.updateFragmentsDebounced = ve.debounce( this.updateFragments.bind( this ) );
+	//this.updateFragmentsDebounced = ve.debounce( this.updateFragments.bind( this ) );
 	this.renderFragmentsDebounced = ve.debounce( this.renderFragments.bind( this ) );
+	/*
 	this.findText.connect( this, {
 		change: 'onFindChange',
 		enter: 'onFindTextEnter'
-	} );
+	} );*/
 	//this.matchCaseToggle.connect( this, { change: 'onFindChange' } );
 	//this.regexToggle.connect( this, { change: 'onFindChange' } );
 	//this.nextButton.connect( this, { click: 'findNext' } );
@@ -160,15 +162,15 @@ ve.ui.LanguageToolDialog.prototype.initialize = function () {
 	doneButton.connect( this, { click: 'close' } );
 
 	// Initialization
-	this.findText.$input.prop( 'tabIndex', 1 );
+	//this.findText.$input.prop( 'tabIndex', 1 );
 	//this.replaceText.$input.prop( 'tabIndex', 2 );
 	this.$content.addClass( 've-ui-LanguageToolDialog-content' );
 	this.$body
 		.append(
 			$findRow.append(
-				this.$( '<div>' ).addClass( 've-ui-LanguageToolDialog-cell ve-ui-LanguageToolDialog-cell-input' ).append(
+				/*this.$( '<div>' ).addClass( 've-ui-LanguageToolDialog-cell ve-ui-LanguageToolDialog-cell-input' ).append(
 					this.findText.$element
-				),
+				),*/
 				navigateGroup.$element,
 				optionsGroup.$element
 			),
@@ -193,13 +195,13 @@ ve.ui.LanguageToolDialog.prototype.getSetupProcess = function ( data ) {
 			this.surface.$selections.append( this.$findResults );
 
 			// Events
-			this.surface.getModel().connect( this, { documentUpdate: this.updateFragmentsDebounced } );
+			//this.surface.getModel().connect( this, { documentUpdate: this.updateFragmentsDebounced } );
 			this.surface.getView().connect( this, { position: this.renderFragmentsDebounced } );
 			this.surface.getView().$window.on( 'scroll', this.onWindowScrollDebounced );
 
 			var text = data.fragment.getText();
-			if ( text && text !== this.findText.getValue() ) {
-				this.findText.setValue( text );
+			if ( text /*&& text !== this.findText.getValue()*/ ) {
+				//this.findText.setValue( text );
 			} else {
 				this.onFindChange();
 			}
@@ -212,7 +214,7 @@ ve.ui.LanguageToolDialog.prototype.getSetupProcess = function ( data ) {
 ve.ui.LanguageToolDialog.prototype.getReadyProcess = function ( data ) {
 	return ve.ui.LanguageToolDialog.super.prototype.getReadyProcess.call( this, data )
 		.next( function () {
-			this.findText.focus().select();
+			//this.findText.focus().select();
 		}, this );
 };
 
@@ -250,7 +252,7 @@ ve.ui.LanguageToolDialog.prototype.onWindowScroll = function () {
  * Handle change events to the find inputs (text or match case)
  */
 ve.ui.LanguageToolDialog.prototype.onFindChange = function () {
-	this.updateFragments();
+	//this.updateFragments();
 	this.renderFragments();
 	this.highlightFocused( true );
 };
@@ -274,6 +276,7 @@ ve.ui.LanguageToolDialog.prototype.onFindTextEnter = function ( e ) {
 /**
  * Update search result fragments
  */
+ /*
 ve.ui.LanguageToolDialog.prototype.updateFragments = function () {
 	var i, l,
 		surfaceModel = this.surface.getModel(),
@@ -281,7 +284,7 @@ ve.ui.LanguageToolDialog.prototype.updateFragments = function () {
 		ranges = [],
 		//matchCase = this.matchCaseToggle.getValue(),
 		//isRegex = this.regexToggle.getValue(),
-		find = this.findText.getValue();
+	//	find = 'text'/*this.findText.getValue()*/;
 
 	//this.invalidRegex = false;
 	/*
@@ -291,14 +294,14 @@ ve.ui.LanguageToolDialog.prototype.updateFragments = function () {
 		} catch ( e ) {
 			this.invalidRegex = true;
 		}
-	} else {*/
-		this.query = find;
+	} else {
+	//	this.query = find;
 	//}
 	//this.findText.$element.toggleClass( 've-ui-LanguageToolDialog-findText-error', this.invalidRegex );
 
 	this.fragments = [];
 	if ( this.query ) {
-		ranges = documentModel.findText( this.query, /*matchCase,*/ true );
+		ranges = documentModel.findText( this.query, /*matchCase, true );
 		for ( i = 0, l = ranges.length; i < l; i++ ) {
 			this.fragments.push( surfaceModel.getLinearFragment( ranges[i], true, true ) );
 		}
@@ -310,7 +313,7 @@ ve.ui.LanguageToolDialog.prototype.updateFragments = function () {
 	//this.replaceButton.setDisabled( !this.results );
 	//this.replaceAllButton.setDisabled( !this.results );
 };
-
+*/
 /**
  * Position results markers
  */
@@ -386,13 +389,13 @@ ve.ui.LanguageToolDialog.prototype.highlightFocused = function ( scrollIntoView 
 		surfaceView = this.surface.getView();
 
 	if ( this.results ) {
-		this.findText.setLabel(
+		/*this.findText.setLabel(
 			ve.msg( 'visualeditor-find-and-replace-results', this.focusedIndex + 1, this.results )
-		);
+		);*/
 	} else {
-		this.findText.setLabel(
+		/*this.findText.setLabel(
 			//this.invalidRegex ? ve.msg( 'visualeditor-find-and-replace-invalid-regex' ) : ''
-		);
+		);*/
 		return;
 	}
 
