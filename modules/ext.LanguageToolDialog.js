@@ -93,11 +93,11 @@ ve.ui.LanguageToolDialog.prototype.initialize = function () {
 		iconTitle: ve.msg( 'visualeditor-find-and-replace-next-button' ) + ' ' +
 			ve.ui.triggerRegistry.getMessages( 'findNext' ).join( ', ' )
 	} );*/
-
+	/*
 	this.replaceText = new OO.ui.TextInputWidget( {
 		$: this.$,
 		placeholder: ve.msg( 'visualeditor-find-and-replace-replace-text' )
-	} );
+	} );*/
 	/*
 	this.replaceButton = new OO.ui.ButtonWidget( {
 		$: this.$,
@@ -161,7 +161,7 @@ ve.ui.LanguageToolDialog.prototype.initialize = function () {
 
 	// Initialization
 	this.findText.$input.prop( 'tabIndex', 1 );
-	this.replaceText.$input.prop( 'tabIndex', 2 );
+	//this.replaceText.$input.prop( 'tabIndex', 2 );
 	this.$content.addClass( 've-ui-LanguageToolDialog-content' );
 	this.$body
 		.append(
@@ -173,9 +173,9 @@ ve.ui.LanguageToolDialog.prototype.initialize = function () {
 				optionsGroup.$element
 			),
 			$replaceRow.append(
-				this.$( '<div>' ).addClass( 've-ui-LanguageToolDialog-cell ve-ui-LanguageToolDialog-cell-input' ).append(
+				/*this.$( '<div>' ).addClass( 've-ui-LanguageToolDialog-cell ve-ui-LanguageToolDialog-cell-input' ).append(
 					this.replaceText.$element
-				),
+				),*/
 				replaceGroup.$element,
 				doneButton.$element
 			)
