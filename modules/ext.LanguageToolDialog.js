@@ -88,20 +88,22 @@ ve.ui.LanguageToolDialog.prototype.send = function () {
 		//console.log(lang);
 		var params = "language=" + lang + "&text=" + text;
 		//console.log(params);
-		var xml;
+		
 		/*$.ajax('https://tools.wmflabs.org/languageproofing', {data: {language: lang,  text: text}}, success : function(d) {
                     xml = d;
                 }).done(function(d){console.log(window.d=d)});*/
 		console.log('sending query');
-		$.ajax({
-      		type: "POST",
+		var xml = $.ajax({
+      		type: 'POST',
       		url: "https://tools.wmflabs.org/languageproofing",
+      		global: false,
+      		async: false,
       		data: {language: lang,  text: text},
       		dataType: "xml",
-      		success : function(data) {
-                    xml = data;
+      		success : function(d) {
+                    return d;
             }
-    	}).done(function(d){console.log(window.d=d)});
+    	}).responseText;
     	console.log('response is here : ');
     	console.log(xml);
 		return xml;
