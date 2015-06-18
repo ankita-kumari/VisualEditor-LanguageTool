@@ -80,13 +80,37 @@ mw.languageToolAction.prototype.send = function () {
 			text += nodeText;
 			//console.log(nodeText);
 		}
-		//console.log(text);
+		console.log(text);
 		var lang = mw.config.get( 'wgPageContentLanguage' );
-		//console.log(lang);
+		console.log(lang);
 		var params = "language=" + lang + "&text=" + text;
 		//console.log(params);
-		$.ajax('https://tools.wmflabs.org/languageproofing', {data: {language: lang,  text: text}}).done(function(d){console.log(window.d=d)})
-		return params;
+		$.ajax(
+		{
+			type: 'POST',
+			dataType: 'text',
+			url: 'http://127.0.0.1:8081/', 
+			data: {language: lang,  text: text}
+		}
+		)
+		.done(function(d)
+		{
+			// Example: Creating and opening a message dialog window.
+			//alert(d);
+			var messageDialog = new OO.ui.MessageDialog();
+			//var response = d;
+			// Create and append a window manager.
+			var windowManager = new OO.ui.WindowManager();
+			$( 'body' ).append( windowManager.$element );
+			windowManager.addWindows( [ messageDialog ] );
+			// Open the window.
+			windowManager.openWindow( messageDialog, {
+    			title: 'LanguageTool Response',
+    			message: d
+			} );	
+			console.log(window.d=d)
+		});
+		return;
 	}
 
 /*xhr request part*/
