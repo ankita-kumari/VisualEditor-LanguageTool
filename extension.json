@@ -1,0 +1,45 @@
+{
+	"name": "LanguageTool",
+	"version": "0.0.0",
+	"author": [
+		"Ankita Kumari"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:LanguageTool",
+	"descriptionmsg": "languagetool-desc",
+	"license-name": "MIT",
+	"type": "other",
+	"MessagesDirs": {
+		"LanguageTool": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+	},
+	"AutoloadClasses": {
+		"LanguageToolHooks": "LanguageTool.hooks.php"
+	},
+	"ResourceModules": {
+		"ext.languageTool.foo": {
+			"scripts": [
+				"modules/ext.languageTool.js",
+				"modules/ext.languageToolAction.js",
+				"modules/ext.languageToolCommand.js"
+			],
+			"styles": [
+				"modules/ext.languageTool.foo.css"
+			],
+			"messages": [],
+			"dependencies": []
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "examples/LanguageTool"
+	},
+	"config": {
+		"LanguageToolEnableFoo": true,
+		"VisualEditorPluginModules": [
+			"ext.languageTool.foo"
+		]
+	}
+}
