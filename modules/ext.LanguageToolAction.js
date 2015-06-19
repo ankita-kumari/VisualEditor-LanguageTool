@@ -109,7 +109,6 @@ mw.languageToolAction.prototype.send = function () {
 		return;
 	}
 
-
 /* Registration */
 
 ve.ui.actionFactory.register( mw.languageToolAction );
