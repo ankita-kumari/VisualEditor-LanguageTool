@@ -1,4 +1,4 @@
-This is a blank extension template. It doesn't really do anything on its own.
+This is an extension for integrating LanguageTool with Mediawiki-VisualEditor. It doesn't really do anything on its own.
 It is intended to provide a boiler template for an actual MediaWiki extension.
 
 If you are checking this out from Git and intend to use it, you may use the

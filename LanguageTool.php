@@ -13,7 +13,7 @@ $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'LanguageTool',
 	'author' => array(
-		'Daniel Naber',
+		'Ankita Kumari',
 	),
 	'version'  => '0.0.0',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:LanguageTool',
@@ -40,12 +40,10 @@ $wgResourceModules['ext.languageTool.foo'] = array(
 	'scripts' => array(
 		'modules/ext.languageTool.js',
 		'modules/ext.languageToolAction.js',
-        'modules/ext.languageToolCommand.js',
-        'modules/ext.languageToolDialog.js'
+        'modules/ext.languageToolCommand.js'
 	),
 	'styles' => array(
-            'modules/ext.languageTool.foo.css',
-            'modules/ext.languageToolDialog.css',
+            'modules/ext.languageTool.foo.css'
 	),
 	'messages' => array(
 	),

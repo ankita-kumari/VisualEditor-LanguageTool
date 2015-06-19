@@ -13,6 +13,5 @@
 	mw.languageTool.static.icon = 'picture';
 	mw.languageTool.static.title = 'LanguageTool';
 	mw.languageTool.static.commandName = 'send';
-	//mw.languageTool.static.activeWindow = 'languageTool';
 	ve.ui.toolFactory.register( mw.languageTool );
 }() );
