@@ -48,10 +48,11 @@ $wgResourceModules['ext.languageTool.foo'] = array(
 	'messages' => array(
 	),
 	'dependencies' => array(
+			'ext.visualEditor.mwcore'
 	),
 
 	'localBasePath' => __DIR__,
-	'remoteExtPath' => 'examples/LanguageTool',
+	'remoteExtPath' => 'LanguageTool',
 );
 
 
