@@ -29,12 +29,12 @@
 				"modules/ext.languageTool.foo.css"
 			],
 			"messages": [],
-			"dependencies": []
+			"dependencies": ["ext.visualEditor.mwcore"]
 		}
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
-		"remoteExtPath": "examples/LanguageTool"
+		"remoteExtPath": "LanguageTool"
 	},
 	"config": {
 		"LanguageToolEnableFoo": true,
