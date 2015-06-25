@@ -1,24 +1,26 @@
 <?php
 /**
- * LanguageTool extension - the thing that needs you.
+ * LanguageTool MediaWiki extension.
  *
  * For more info see http://mediawiki.org/wiki/Extension:LanguageTool
  *
  * @file
  * @ingroup Extensions
- * @author Your Name, 2015
+ * @author Ankita Kumari, 2015
  */
 
 $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'LanguageTool',
 	'author' => array(
-		'Ankita Kumari',
+            'Ankita Kumari',
+            'Eran Rosenthal',
+            'Amir E. Aharoni'
 	),
 	'version'  => '0.0.0',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:LanguageTool',
 	'descriptionmsg' => 'languagetool-desc',
-	'license-name' => 'MIT',
+	'license-name' => 'GPL 2.0',
 );
 
 /* Setup */
@@ -47,11 +49,12 @@ $wgResourceModules['ext.languageTool.foo'] = array(
 	),
 	'messages' => array(
 	),
-	'dependencies' => array(
+    'dependencies' => array(
+            'ext.visualEditor.mwcore'
 	),
 
 	'localBasePath' => __DIR__,
-	'remoteExtPath' => 'examples/LanguageTool',
+	'remoteExtPath' => 'LanguageTool',
 );
 
 

@@ -79,9 +79,7 @@ mw.languageToolAction.prototype.send = function () {
 			var nodeText = model.getLinearFragment(nodeRange).getText();
 			text += nodeText;
 		}
-		console.log(text);
 		var lang = mw.config.get( 'wgPageContentLanguage' );
-		console.log(lang);
 		var params = "language=" + lang + "&text=" + text;
 		$.ajax(
 		{
@@ -104,7 +102,6 @@ mw.languageToolAction.prototype.send = function () {
     			title: 'LanguageTool Response',
     			message: d
 			} );	
-			console.log(window.d=d)
 		});
 		return;
 	}
